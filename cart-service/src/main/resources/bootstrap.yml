@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: cart-service
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://localhost:2608
+      

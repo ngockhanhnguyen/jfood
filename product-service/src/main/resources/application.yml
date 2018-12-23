@@ -1,0 +1,42 @@
+server:
+  port: 2008
+  context-path: /
+
+eureka:
+  instance:
+    preferIpAddress: true # Register the IP of the service rather than the server name
+  client:
+    registerWithEureka: true
+    fetchRegistry: true # Pull down a local copy of registry, refresh after every 30s
+    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
+      defaultZone: https://jfood-eureka.herokuapp.com/eureka
+
+### Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+#spring.datasource.driver-class-name = com.mysql.jdbc.Driver
+#spring.datasource.url = jdbc:mysql://localhost:3306/jfood_product?useSSL=false&characterEncoding=UTF-8
+#spring.datasource.username = root
+#spring.datasource.password = 1234
+#o
+#
+### Hibernate Properties
+## The SQL dialect makes Hibernate generate better SQL for the chosen database
+#spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+#spring.jpa.properties.hibernate.show_sql = true
+## Hibernate ddl auto (create, create-drop, validate, update)
+#spring.jpa.hibernate.ddl-auto = update
+#
+#
+### MULTIPART (MultipartProperties)
+## Enable multipart uploads
+#spring.servlet.multipart.enabled=true
+## Threshold after which files are written to disk.
+#spring.servlet.multipart.file-size-threshold=2KB
+## Max file size.
+#spring.servlet.multipart.max-file-size=200MB
+## Max Request Size
+#spring.servlet.multipart.max-request-size=215MB
+#
+### File Storage Properties
+## All files uploaded through the REST API will be stored in this directory
+#file.upload-dir=uploads

@@ -1,0 +1,12 @@
+version: '2'
+services:
+  zuul-service:
+    image: jfood/zuul-service:v1
+    ports:
+      - "2708:2708"
+    environment:
+      EUREKASERVER_URI: "https://jfood-eureka.herokuapp.com/eureka"
+      EUREKASERVER_HOST: "jfood-eureka.herokuapp.com"
+      EUREKASERVER_PORT: "80"
+      PORT: 2708
+      PROFILE: dev

@@ -1,0 +1,33 @@
+server:
+  port: 2608
+  
+#spring:
+#  profiles:
+#    active: native
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          search-locations: classpath:config/cart-service, classpath:config/product-service, classpath:config/account-service
+
+spring:
+  application:
+    name: configuration-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ngockhanhnguyen/jfood-config.git
+          searchPaths: cart-service, product-service, account-service
+          username: ngockhanhnguyenn@gmail.com
+          password: ngockhanh132
+
+eureka:
+  instance:
+    preferIpAddress: true # Register the IP of the service rather than the server name
+  client:
+    registerWithEureka: true
+    fetchRegistry: true # Pull down a local copy of registry, refresh after every 30s
+    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
+      defaultZone: https://jfood-eureka.herokuapp.com/eureka

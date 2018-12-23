@@ -1,0 +1,6 @@
+server:
+  port: ${PORT}   
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: https://jfood-eureka.herokuapp.com/eureka

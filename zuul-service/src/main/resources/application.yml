@@ -1,0 +1,56 @@
+server:
+  port: 2708
+  
+spring:
+  application:
+    name: zuul-service
+    
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+      defaultZone: https://jfood-eureka.herokuapp.com/eureka
+      
+      
+zuul:
+  prefix: /api
+  routes:
+    product-service: /product/**
+    account-service: /account/**
+    order-service: /order/**
+    cart-service: /cart/**
+    payment-service: /payment/**
+    notification-service: /notification/**
+
+management:
+  security:
+    enabled: false
+    
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+product-service:
+  ribbon:
+    ReadTimeout: 60000
+cart-service:
+  ribbon:
+    ReadTimeout: 60000
+order-service:
+  ribbon:
+    ReadTimeout: 60000
+account-service:
+  ribbon:
+    ReadTimeout: 60000
+payment-service:
+  ribbon:
+    ReadTimeout: 60000
+
+

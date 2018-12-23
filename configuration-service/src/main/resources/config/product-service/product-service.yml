@@ -1,0 +1,32 @@
+## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jfood_product?useSSL=false&characterEncoding=UTF-8
+    username: root
+    password: 1234
+
+## Hibernate Properties
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        show_sql: true
+# Hibernate ddl auto (create, create-drop, validate, update)
+        ddl-auto: update
+
+## MULTIPART (MultipartProperties)
+  servlet:
+    multipart:
+      enabled: true
+# Threshold after which files are written to disk.
+      file-size-threshold: 2KB
+# Max file size.
+      max-file-size: 200MB
+# Max Request Size
+      max-request-size: 215MB
+
+## File Storage Properties
+# All files uploaded through the REST API will be stored in this directory
+file:
+  upload-dir: uploads

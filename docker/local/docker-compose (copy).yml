@@ -1,0 +1,24 @@
+version: '2'
+services:
+  discovery-service:
+    image: jfood/discovery-service:v1
+    ports:
+      - "8761:8761"
+    environment:
+      PORT: 8761
+  configuration-service:
+    image: jfood/configuration-service:v1
+    ports:
+      - "2608:2608"
+    environment:
+      EUREKASERVER_URI: "http://discovery-service:8761/eureka"
+      EUREKASERVER_PORT: "8761"
+      PORT: 2608
+  zuul-service:
+    image: jfood/zuul-service:v1
+    ports:
+      - "2708:2708"
+    environment:
+      EUREKASERVER_URI: "http://discovery-service:8761/eureka"
+      EUREKASERVER_PORT: "8761"
+      PORT: 2708
