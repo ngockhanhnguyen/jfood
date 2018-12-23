@@ -30,27 +30,27 @@ management:
   security:
     enabled: false
     
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 60000
-product-service:
-  ribbon:
-    ReadTimeout: 60000
-cart-service:
-  ribbon:
-    ReadTimeout: 60000
-order-service:
-  ribbon:
-    ReadTimeout: 60000
-account-service:
-  ribbon:
-    ReadTimeout: 60000
-payment-service:
-  ribbon:
-    ReadTimeout: 60000
-
-
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 60000
+#product-service:
+#  ribbon:
+#    ReadTimeout: 60000
+#cart-service:
+#  ribbon:
+#    ReadTimeout: 60000
+#order-service:
+#  ribbon:
+#    ReadTimeout: 60000
+#account-service:
+#  ribbon:
+#    ReadTimeout: 60000
+#payment-service:
+#  ribbon:
+#    ReadTimeout: 60000
+#
+#
