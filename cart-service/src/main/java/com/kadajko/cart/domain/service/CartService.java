@@ -20,4 +20,6 @@ public interface CartService {
     void deleteItem(UUID cartId, UUID productId);
     
     void emptyCart(UUID cartId);
+    
+    Collection<Cart> getAllCarts();
 }
