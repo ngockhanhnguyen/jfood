@@ -40,7 +40,6 @@
     <dependency>
       <groupId>com.netflix.hystrix</groupId>
       <artifactId>hystrix-javanica</artifactId>
-      <version>1.5.9</version>
     </dependency>
   </dependencies>
 
