@@ -101,6 +101,11 @@ public class CartServiceImpl implements CartService {
         cart.setItems(new HashMap<>());
         repository.save(cart);
     }
+
+    @Override
+    public Collection<Cart> getAllCarts() {
+        return repository.findAll();
+    }
     
     
 

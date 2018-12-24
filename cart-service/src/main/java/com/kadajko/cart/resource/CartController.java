@@ -2,6 +2,7 @@ package com.kadajko.cart.resource;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,11 @@ public class CartController {
         
         return new ResponseEntity<Cart>(
                 cart, headers, HttpStatus.CREATED);
+    }
+    
+    @GetMapping("/all")
+    public Collection<Cart> getAllCart() {
+        return cartService.getAllCarts();
     }
     
     @PostMapping("/{id}")

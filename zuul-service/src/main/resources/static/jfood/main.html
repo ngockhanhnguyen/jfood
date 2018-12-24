@@ -1,0 +1,150 @@
+
+<div class="products">
+  <h2 class=" products-in">PRODUCTS</h2>
+  <div class="row" style="margin: 0 auto;">
+    <div class="col-xs-2">
+      <div class="dataTables_length" id="example1_length">
+        <label>Kích thước trang <select
+          style="margin-left: 10px; margin-right: 10px"
+          name="example1_length" aria-controls="example1"
+          class="form-control input-sm" ng-model="size">
+            <option value="4">8</option>
+            <option value="6">12</option>
+            <option value="8">16</option>
+            <option value="10">20</option>
+        </select>
+        </label>
+      </div>
+    </div>
+    <div class="col-xs-2">
+      <div class="dataTables_length" id="example1_length">
+        <label>Trang <select
+          style="margin-left: 10px; margin-right: 10px"
+          name="example1_length" aria-controls="example1"
+          class="form-control input-sm" ng-model="page">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select>
+        </label>
+      </div>
+    </div>
+    <div class="col-xs-8">
+      <div id="example1_filter" class="dataTables_filter">
+        <label> Search:<input ng-keyup="searchProductByName()"
+          type="search" style="margin-left: 10px"
+          class="form-control input-sm" placeholder=""
+          aria-controls="example1" ng-model="nameSearch">
+        </label>
+      </div>
+    </div>
+  </div>
+  <div ng-repeat="product in products | limitTo:size:(page - 1) * size | orderBy: attribute:reverse">
+    <div class=" top-products" ng-if="$even">
+      <div class="col-md-3 md-col">
+        <div class="col-md">
+          <a href="single.html" class="compare-in"><img
+            style="height: 205px;"
+            src="{{ products[$index].images[0].imageUrl }}" alt="" />
+            <div class="compare">
+              <span>Add to Compare</span> <span>Add to Whislist</span>
+            </div> </a>
+          <div class="top-content">
+            <h5 style="height: 70px">
+              <a href="single.html">{{ products[$index].name }}</a>
+            </h5>
+            <div class="white">
+              <a href="single.html"
+                class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD
+                TO CART</a>
+              <p class="dollar">
+                <span>{{ products[$index].price }}</span><span>VND</span>
+              </p>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 md-col">
+        <div class="col-md">
+          <a href="single.html" class="compare-in"><img
+            style="height: 205px;"
+            src="{{ products[$index + 1].images[0].imageUrl }}" alt="" />
+            <div class="compare">
+              <span>Add to Compare</span> <span>Add to Whislist</span>
+            </div> </a>
+          <div class="top-content">
+            <h5 style="height: 70px">
+              <a href="single.html">{{ products[$index + 1].name }}</a>
+            </h5>
+            <div class="white">
+              <a href="single.html"
+                class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD
+                TO CART</a>
+              <p class="dollar">
+                <span>{{ products[$index + 1].price }}</span><span>VND</span>
+              </p>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 md-col">
+        <div class="col-md">
+          <a href="single.html" class="compare-in"><img
+            style="height: 205px;"
+            src="{{ products[$index + 2].images[0].imageUrl }}" alt="" />
+            <div class="compare">
+              <span>Add to Compare</span> <span>Add to Whislist</span>
+            </div> </a>
+          <div class="top-content">
+            <h5 style="height: 70px">
+              <a href="single.html">{{ products[$index + 2].name }}</a>
+            </h5>
+            <div class="white">
+              <a href="single.html"
+                class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD
+                TO CART</a>
+              <p class="dollar">
+                <span>{{ products[$index + 2].price }}</span><span>VND</span>
+              </p>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 md-col">
+        <div class="col-md">
+          <a href="single.html" class="compare-in"><img
+            style="height: 205px;"
+            src="{{ products[$index + 3].images[0].imageUrl }}" alt="" />
+            <div class="compare">
+              <span>Add to Compare</span> <span>Add to Whislist</span>
+            </div> </a>
+          <div class="top-content">
+            <h5 style="height: 70px">
+              <a href="single.html">{{ products[$index + 3].name }}</a>
+            </h5>
+            <div class="white">
+              <a href="single.html"
+                class="hvr-shutter-in-vertical hvr-shutter-in-vertical2">ADD
+                TO CART</a>
+              <p class="dollar">
+                <span>{{ products[$index +3].price }}</span><span>VND</span>
+              </p>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="clearfix"></div>
+  </div>
+</div>
