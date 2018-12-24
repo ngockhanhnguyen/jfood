@@ -28,7 +28,6 @@ import com.kadajko.product.domain.model.Image;
 import com.kadajko.product.domain.service.ImageService;
 import com.kadajko.product.exception.ImageFormatNotFoundException;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/v1/images")
 public class ImageController {
@@ -36,6 +35,7 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
     
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/product/{id}", method = RequestMethod.POST)
     public ResponseEntity<Image> addPrimaryImageForProduct(
             @RequestParam("primaryImage") MultipartFile primaryImage, 
@@ -52,6 +52,7 @@ public class ImageController {
         return new ResponseEntity<Image>(image, headers, HttpStatus.CREATED);
     }
     
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/other/product/{id}", method = RequestMethod.POST)
     public ResponseEntity<Image> addOtherImagesForProduct(
             @RequestParam("otherImage") MultipartFile otherImage, 
@@ -106,6 +107,7 @@ public class ImageController {
         return image;
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Resource> getImageAsResource(@PathVariable UUID id, 
             HttpServletRequest request) {
