@@ -5,4 +5,5 @@ spring:
     active: default
   cloud:
     config:
-      uri: http://localhost:2608
+#      uri: http://localhost:2608
+      uri: https://jfood-configuration.herokuapp.com
