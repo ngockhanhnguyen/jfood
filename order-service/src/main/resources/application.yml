@@ -1,0 +1,39 @@
+server:
+  port: 2208
+  context-path: /
+  
+eureka:
+  instance:
+    preferIpAddress: true # Register the IP of the service rather than the server name
+  client:
+    registerWithEureka: true
+    fetchRegistry: true # Pull down a local copy of registry, refresh after every 30s
+    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
+      defaultZone: https://jfood-eureka.herokuapp.com/eureka
+
+#spring:
+#  application:
+#    name: order-service
+#  datasource: 
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/jfood_order?useSSL=false&characterEncoding=UTF-8
+#    username: root
+#    password: 1234
+#  jpa:
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#    hibernate:
+#      ddl-auto: update
+
+#security.oauth2.resource.user-info-uri=http://localhost:2108/v1/account/info
+#security.oauth2.resource.filter-order = 3
+
+## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+
+
+## Hibernate Properties
+# The SQL dialect makes Hibernate generate better SQL for the chosen database
+# Hibernate ddl auto (create, create-drop, validate, update)
