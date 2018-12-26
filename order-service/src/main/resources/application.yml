@@ -37,3 +37,19 @@ eureka:
 ## Hibernate Properties
 # The SQL dialect makes Hibernate generate better SQL for the chosen database
 # Hibernate ddl auto (create, create-drop, validate, update)
+
+spring:
+  application:
+    name: order-service
+  datasource: 
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://ngockhanh:3306/jfood_order?useSSL=false&characterEncoding=UTF-8
+    username: quangduy
+    password: 1234
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update

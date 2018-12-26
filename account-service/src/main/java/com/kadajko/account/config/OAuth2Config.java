@@ -26,7 +26,8 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                     "refresh_token", 
                     "password", 
                     "client_credentials")
-            .scopes("webclient", "mobileclient");
+            .scopes("webclient", "mobileclient")
+            .accessTokenValiditySeconds(3600);
     }
     
     @Override

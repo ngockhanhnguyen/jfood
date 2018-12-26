@@ -68,5 +68,10 @@ public class UserServiceImpl implements UserService {
         return repository.update(user);
     }
 
+	@Override
+	public User loadUserByEmail(String email) {
+		return repository.loadUserByEmail(email);
+	}
+
     
 }

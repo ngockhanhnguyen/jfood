@@ -35,6 +35,12 @@
       <scope>runtime</scope>
     </dependency>
     
+    <!-- Dependency needs for getting configuration from Spring cloud configuration server -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-config-client</artifactId>
+    </dependency>
+    
     <!-- For registering this service with discovery-service -->
     <dependency>
       <groupId>org.springframework.cloud</groupId>

@@ -16,4 +16,6 @@ public interface UserService extends UserDetailsService {
     void changePassword(String email, String newPassword);
     
     User update(User user);
+    
+    User loadUserByEmail(String email);
 }

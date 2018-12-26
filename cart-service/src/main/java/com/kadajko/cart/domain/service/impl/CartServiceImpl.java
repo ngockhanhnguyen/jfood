@@ -1,7 +1,9 @@
 package com.kadajko.cart.domain.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -40,7 +42,7 @@ public class CartServiceImpl implements CartService {
         if (cart == null)
             throw new UnknownResourceException(
                     "Cart with id " + id + " does not exist.");
-        return cart.getItems().values();
+        return cart.getItems();
     }
 
     @Override
@@ -49,7 +51,15 @@ public class CartServiceImpl implements CartService {
         if (cart == null)
             throw new UnknownResourceException(
                     "Cart with id " + id + " does not exist.");
-        cart.getItems().put(item.getProductId(), item);
+        for (CartItem i : cart.getItems()) {
+			if (item.equals(i)) {
+				i.setQuantity(item.getQuantity() + i.getQuantity());
+				repository.save(cart);
+				return i;
+			}
+		}
+        
+        cart.getItems().add(item);
         repository.save(cart);
         return item;
     }
@@ -61,18 +71,20 @@ public class CartServiceImpl implements CartService {
         if (cart == null)
             throw new UnknownResourceException(
                     "Cart with id " + cartId + " does not exist.");
-        Map<UUID, CartItem> items = cart.getItems();
-        if (!items.containsKey(productId))
-            throw new UnknownResourceException(
+//        items = cart.getItems();
+        List<CartItem> items = cart.getItems();
+        int i;
+        for (i = 0; i < items.size(); i++) {
+			if (items.get(i).getProductId().equals(productId)) {
+				items.get(i).setQuantity(quantity);
+				cart.setItems(items);
+				repository.save(cart);
+				return items.get(i);
+			}
+		}
+
+        throw new UnknownResourceException(
                 "Product with id " + productId + " does not exist in cart.");
-        
-        CartItem item = items.get(productId);
-        item.setQuantity(quantity);
-        items.put(productId, item);
-        cart.setItems(items);
-        repository.save(cart);
-        
-        return item;
     }
 
     @Override
@@ -82,14 +94,20 @@ public class CartServiceImpl implements CartService {
             throw new UnknownResourceException(
                     "Cart with id " + cartId + " does not exist.");
         
-        Map<UUID, CartItem> items = cart.getItems();
-        if (!items.containsKey(productId))
-            throw new UnknownResourceException(
+        List<CartItem> items = cart.getItems();
+        int i;
+        for (i = 0; i < items.size(); i++) {
+			if (items.get(i).getProductId().equals(productId)) {
+				items.remove(i);
+				cart.setItems(items);
+				repository.save(cart);
+				return;
+			}
+		}
+        
+        throw new UnknownResourceException(
                 "Product with id " + productId + " does not exist in cart.");
         
-        items.remove(productId);
-        cart.setItems(items);
-        repository.save(cart);
     }
 
     @Override
@@ -98,7 +116,7 @@ public class CartServiceImpl implements CartService {
         if (cart == null)
             throw new UnknownResourceException(
                     "Cart with id " + cartId + " does not exist.");
-        cart.setItems(new HashMap<>());
+        cart.setItems(new ArrayList<CartItem>());
         repository.save(cart);
     }
 

@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "address")
 public class Address {
@@ -39,6 +41,7 @@ public class Address {
     @JoinColumn(name = "order_id")
     private Order order;
     
+    @JsonIgnore
     public Order getOrder() {
         return order;
     }

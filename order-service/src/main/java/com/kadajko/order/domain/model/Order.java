@@ -44,8 +44,8 @@ public class Order {
     @Column(name = "status")
     private OrderStatus status;
     
-    @Column(name = "user_id", columnDefinition = "BINARY(16)")
-    private UUID userId;
+    @Column(name = "email_user")
+    private String emailUser;
     
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
@@ -83,19 +83,27 @@ public class Order {
         this.status = status;
     }
     
-    public UUID getUserId() {
-        return userId;
-    }
+	/*
+	 * public UUID getUserId() { return userId; }
+	 * 
+	 * public void setUserId(UUID userId) { this.userId = userId; }
+	 */
     
-    public void setUserId(UUID userId) {
-        this.userId = userId;
-    }
+    
     
     public List<OrderItem> getItems() {
         return items;
     }
     
-    public void setItems(List<OrderItem> items) {
+    public String getEmailUser() {
+		return emailUser;
+	}
+
+	public void setEmailUser(String emailUser) {
+		this.emailUser = emailUser;
+	}
+
+	public void setItems(List<OrderItem> items) {
         this.items = items;
     }
 

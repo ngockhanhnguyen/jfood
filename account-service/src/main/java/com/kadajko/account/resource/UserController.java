@@ -18,6 +18,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,6 +56,11 @@ public class UserController {
     public List<User> getAll() {
 //        logger.log(Level.INFO, "email = " + email);
         return userService.getAll();
+    }
+    
+    @GetMapping("/{email:.+}")
+    public User getUserByEmail(@PathVariable String email) {
+    	return userService.loadUserByEmail(email);
     }
     
     @Autowired

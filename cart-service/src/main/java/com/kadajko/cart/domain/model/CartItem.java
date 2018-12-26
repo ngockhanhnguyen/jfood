@@ -2,6 +2,8 @@ package com.kadajko.cart.domain.model;
 
 import java.util.UUID;
 
+import org.springframework.data.annotation.Transient;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,6 +13,7 @@ public class CartItem {
     private Double price;
     
     @JsonIgnore
+    @Transient
     private Double total;
     
     @JsonProperty
@@ -48,4 +51,11 @@ public class CartItem {
     public void setPrice(Double price) {
         this.price = price;
     }
+
+	@Override
+	public boolean equals(Object obj) {
+		return this.productId.equals(((CartItem) obj).productId);
+	}
+    
+    
 }

@@ -1,7 +1,9 @@
 package com.kadajko.cart.domain.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -23,8 +25,10 @@ public class Cart {
     @JsonIgnore
     private Date createdAt;
     
+//    @Field("items")
+//    private Map<UUID, CartItem> items = new HashMap<>();
     @Field("items")
-    private Map<UUID, CartItem> items = new HashMap<>();
+    private List<CartItem> items = new ArrayList<>();
     
     @Transient
     @JsonIgnore
@@ -49,26 +53,34 @@ public class Cart {
         this.createdAt = createdAt;
     }
     
-    public Map<UUID, CartItem> getItems() {
-        return items;
-    }
+	/*
+	 * public Map<UUID, CartItem> getItems() { return items; }
+	 * 
+	 * public void setItems(Map<UUID, CartItem> items) { this.items = items; }
+	 */
     
-    public void setItems(Map<UUID, CartItem> items) {
-        this.items = items;
-    }
+    
     
     @JsonProperty
     public Double getTotal() {
         this.total = 0.0;
         if (items != null)
-            for (CartItem cartItem : items.values()) {
+            for (CartItem cartItem : items) {
                 total += cartItem.getTotal();
             }
         
         return total;
     }
     
-    @JsonIgnore
+    public List<CartItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<CartItem> items) {
+		this.items = items;
+	}
+
+	@JsonIgnore
     public void setTotal(Double total) {
         this.total = total;
     }
