@@ -1,7 +1,18 @@
-app.controller("productCtrl", ["$scope", "CategoryService", "ProductService", '$cookies','$http', 
-    function ($scope, CategoryService, ProductService, $cookies, $http) {
+app.controller("productCtrl", ["$scope", "$routeParams", "CategoryService", "ProductService", '$cookies','$http', 
+    function ($scope, $routeParams, CategoryService, ProductService, $cookies, $http) {
 		$scope.page = 1;
-		$scope.size = 2;
+		$scope.size = 8;
+		
+		$scope.products = [];
+		
+		ProductService.getProductsByCategory($routeParams.categoryId)
+			.then(function(response) {
+				$scope.products = response.data;
+			}, function(reason) {
+				
+			}, function(value) {
+				
+			})
 //        _refreshProductData();
 //
 //        $scope.productForm = {

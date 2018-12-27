@@ -17,7 +17,7 @@ app.controller("mainCtrl", ["$scope", "ProductService", "CartService", '$cookies
 //		}
 	
 		$scope.page = 1;
-		$scope.size = 4;
+		$scope.size = 8;
 		
 		
         _refreshProductData();

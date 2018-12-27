@@ -20,6 +20,15 @@ app.service("CartService", ["$http", function ($http) {
             });
         }
         
+        this.deleteItemFromCart = function(cartId, id) {
+        	var req = {
+        		method: "DELETE",
+        		url: baseUrl + "/v1/cart/" + cartId + "/item/" + id
+        	};
+        	
+        	return $http(req);
+        }
+        
         this.updateProduct = function updateProduct(product) {
             return $http({
                 method: "PUT",

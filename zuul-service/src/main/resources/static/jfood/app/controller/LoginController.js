@@ -7,12 +7,12 @@ app.controller("loginCtrl", ["$scope", "CategoryService", "ProductService",
           'Bearer ' + $cookies.get("access_token");
         window.location.href = "index.html";
     }
+	
 	$scope.loginFail = false;
     
     
     
     $scope.encoded = btoa("jfood:1234");
-     
     $scope.login = function() {   
     	
     	var formData = new FormData();

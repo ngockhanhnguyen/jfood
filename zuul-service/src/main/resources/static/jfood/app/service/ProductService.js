@@ -9,6 +9,22 @@ app.service("ProductService", ["$http", function ($http) {
                 url: baseUrl + "/v1/products/"
             });
         }
+        
+        this.getProductById = function getProductById(id) {
+        	return $http({
+                method: "GET",
+                url: baseUrl + "/v1/products/" + id
+            });
+        }
+        
+        this.getProductsByCategory = function getProductsByCategory(categoryId) {
+        	var req = {
+        		method: "GET",
+        		url: baseUrl + "/v1/products/category/" + categoryId
+        	}
+        	
+        	return $http(req);
+        }
 
         this.saveProduct = function saveProduct(product) {
             return $http({
@@ -100,43 +116,4 @@ app.service("ProductService", ["$http", function ($http) {
                 }
             });
         }
-
-//    this.updateCategory = function updateCategory(category) {
-//    	return $http({
-//    		method: "PUT",
-//    		url: "http://localhost:2708/api/product/v1/categories/" + category.id,
-//    		headers: {
-//                "Content-type": "application/json; charset=utf-8"
-//            },
-//    		data : {
-//                title : category.title,
-//                description: category.description,
-//                enabled: true
-//            }
-//    	});
-//    }
-//    
-//    this.deleteCategory = function deleteCategory(categoryId) {
-//    	return $http({
-//    		method: "DELETE",
-//    		url: "http://localhost:2708/api/product/v1/categories/" + categoryId,
-//    		headers: {
-//                "Content-type": "application/json; charset=utf-8",
-//                "Accept-type" : "application/json; charset=utf-8"
-//            },
-//	    	data : {
-//	    	}
-//        });
-//    }
-//    
-//    this.searchCategoryByName = function searchCategoryByName(categoryName) {
-//    	return $http({
-//    		method: "GET",
-//    		url: "http://localhost:2708/api/product/v1/categories/search?key=" + categoryName,
-//    		headers: {
-//                "Content-type": "application/json; charset=utf-8",
-//                "Accept-type" : "application/json; charset=utf-8"
-//            }
-//        });
-//    }
     }]);

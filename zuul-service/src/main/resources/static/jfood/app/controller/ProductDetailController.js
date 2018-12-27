@@ -1,8 +1,8 @@
 app.controller("productDetailCtrl", ["$scope", "CategoryService", "ProductService", 
 	'$cookies','$http', "$routeParams",
     function ($scope, CategoryService, ProductService, $cookies, $http, $routeParams) {
+	
 		getProductById($routeParams.productId);
-//		getCategories();
 		
 		function getProductById(productId) {
 			ProductService.getProductById(productId)
@@ -15,22 +15,22 @@ app.controller("productDetailCtrl", ["$scope", "CategoryService", "ProductServic
 				})
 		}
 		
-		function addToCart(product, quantity) {
-			console.log(quantity);
-        	CartService.addToCart($cookies.get("cart_url"), product.quantity)
-        		.then(function(response) {
-        			$scope.cartItems = response.data;
-        			$scope.cart.items = $scope.cartItems;
-        		}, function(reason) {
-        			
-        		}, function(value) {
-        			
-        		})
-        }
-		
-		function test() {
-			console.log('haha');
-		}
+//		function addToCart(product, quantity) {
+//			console.log(quantity);
+//        	CartService.addToCart($cookies.get("cart_url"), product.quantity)
+//        		.then(function(response) {
+//        			$scope.cartItems = response.data;
+//        			$scope.cart.items = $scope.cartItems;
+//        		}, function(reason) {
+//        			
+//        		}, function(value) {
+//        			
+//        		})
+//        }
+//		
+//		function test() {
+//			console.log('haha');
+//		}
 		
 //		function getCategories() {
 //            CategoryService.getCategories()

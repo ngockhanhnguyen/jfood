@@ -1,8 +1,24 @@
 app.controller("cartCtrl", ["$scope", "$route", "CategoryService", "ProductService", "CartService", '$cookies', '$http', 
     function ($scope, $route, CategoryService, ProductService, CartService, $cookies, $http) {
-		function initCartTable() {
-			
-		}
+		
+		_refreshProductData();
+
+        function _refreshProductData() {
+            ProductService.getProducts()
+                    .then(function success(response) {
+                        $scope.products = response.data;
+                     }, function error(response) {
+
+                     });
+        }
+        
+        $scope.getProductById = function(id) {
+        	for (var i in $scope.products) {
+        		if ($scope.products[i].id == id) {
+        			return $scope.products[i];
+        		}
+        	}
+        }
 		
 		$scope.btnXoaClick = function(cartId, productId) {
         	

@@ -39,9 +39,9 @@ app.controller("checkOutCtrl", ["$scope", "$route", "CategoryService", "ProductS
 		      	}
 		  }
 		  
-		  $btnXacNhanClick() {
-			  
-		  }
+//		  $btnXacNhanClick() {
+//			  
+//		  }
 		  
 //		  $scope.districts;
 //		  $http({

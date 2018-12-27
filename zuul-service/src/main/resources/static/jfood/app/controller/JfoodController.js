@@ -14,28 +14,54 @@ app.controller("jfoodCtrl", ["$scope", "CategoryService", "CartService", '$cooki
 //		      }
 //		}
 	
-//        $scope.page = 1;
-//        $scope.size = 5;
-//        $scope.keySearch = '';
-//        $scope.disableLuuBtn = false;
-//        $scope.addSuccess = false;
-//        $scope.updateSuccess = false;
-//        $scope.categoryForm = {
-//            id: "",
-//            title: "",
-//            description: ""
-//        };
+		if ($cookies.get("access_token")){
+	        $http.defaults.headers.common.Authorization = 
+	          'Bearer ' + $cookies.get("access_token");
+	        $scope.chuaLogin = false;
+	    } else {
+	    	$scope.chuaLogin = true;
+	    }
+		
+		$scope.logout = function() {
+			var req = {
+		            method: 'POST',
+		            url: "http://quangduy:2108/v1/account/logout",
+		            headers: {
+		                "Authorization": "Bearer " + $cookies.get("access_token"),
+		                "Content-type": "application/x-www-form-urlencoded; charset=utf-8"
+		            }
+		            
+		        }
+		        $http(req).then(
+		        		function(data){
+		        			$cookies.remove("access_token");
+				            window.location.href="index.html";
+				            $scope.chuaLogin = true;
+				            console.log("success");
+		        		},
+		        		function(data) {
+		        			console.log("false");
+						});
+		}
 
 		var cartUrl;
-		_createCart();
+		
+		$scope.cart = [];
+		
+		if ($cookies.get("cart_url")) {
+			cartUrl = $cookies.get("cart_url");
+			$scope.cart = _getCart(cartUrl);
+		} else {
+			_createCart();
+		}
+		
         
         function _createCart() {
         	CartService.createCart()
         			.then(function(response) {
         				cartUrl = response.headers("Location");
-        				console.log(cartUrl);
-        				$cookies.put("cartUrl", cartUrl);
-        				_getCart(cartUrl);
+        				$cookies.put("cart_url", cartUrl);
+        				$scope.cart = response.data;
         			}, function(reason) {
         				
         			}, function(value) {
@@ -79,65 +105,5 @@ app.controller("jfoodCtrl", ["$scope", "CategoryService", "CartService", '$cooki
             $scope.nameSearch = '';
         }
 
-        function _clearFormData() {
-            $scope.categoryForm.title = "";
-            $scope.categoryForm.description = "";
-            $scope.formCategory.$setPristine();
-        }
-
-        $scope.btnLuuClick = function () {
-            CategoryService.saveCategory($scope.categoryForm)
-                    .then(_success, _error);
-            $scope.addSuccess = true;
-            $scope.updateSuccess = false;
-        }
-
-        $scope.btnSuaOnTableClick = function (category) {
-            $scope.categoryForm.id = category.id;
-            $scope.categoryForm.title = category.title;
-            $scope.categoryForm.description = category.description;
-
-            $scope.formCategory.$setDirty();
-            $scope.addSuccess = false;
-            $scope.updateSuccess = false;
-        }
-
-        $scope.btnSuaOnFormClick = function () {
-            CategoryService.updateCategory($scope.categoryForm)
-                    .then(_success, _error);
-            $scope.disableLuuBtn = !$scope.disableLuuBtn;
-            $scope.addSuccess = false;
-            $scope.updateSuccess = true;
-        }
-
-        $scope.btnResetClick = function (category) {
-            $scope.categoryForm.title = "";
-            $scope.categoryForm.description = "";
-            $scope.formCategory.$setPristine();
-            $scope.addSuccess = false;
-            $scope.updateSuccess = false;
-        }
-
-        $scope.btnXoaClick = function (categoryId) {
-            CategoryService.deleteCategory(categoryId)
-                    .then(_success, _error);
-        }
-
-        $scope.searchCategoryByName = function () {
-            CategoryService.searchCategoryByName($scope.nameSearch)
-                    .then(
-                            function success(response) {
-                                $scope.categories = response.data;
-                            },
-                            function error(response) {
-                            }
-                    );
-        }
-
-        $scope.reverse = false;
-
-        $scope.orderCategory = function (attribute) {
-            $scope.attribute = attribute;
-            $scope.reverse = !$scope.reverse;
-        }
+        
     }]);
